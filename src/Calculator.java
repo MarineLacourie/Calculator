@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Calculator {
@@ -15,6 +16,7 @@ public class Calculator {
         System.out.println("    4- Devide");
         System.out.println("------------------------------------------------------------------------------");
 
+
         Scanner inputOperation = new Scanner(System.in);
         operationWanted = inputOperation.nextInt();
 
@@ -25,8 +27,24 @@ public class Calculator {
 
         Scanner inputNumbers = new Scanner(System.in);
 
-        System.out.println("Enter the 1st number");
-        number1 = inputNumbers.nextInt();
+        try {
+            System.out.println("Enter the 1st number");
+            number1 = inputNumbers.nextInt();
+        } catch (InputMismatchException a) {
+            try {
+                System.out.println("This is not a valid input. Enter the 1st number again: ");
+                Scanner inputNumbersBis = new Scanner(System.in);
+                number1 = inputNumbersBis.nextInt();
+            }
+
+            catch(InputMismatchException b) {
+                while (a != null) {
+                    System.out.println("This is not a valid input. Please run the program again ");
+                    break;
+                    }
+                }
+        }
+
 
         System.out.println("Enter the 2nd number");
         number2 = inputNumbers.nextInt();
