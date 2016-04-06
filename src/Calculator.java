@@ -27,27 +27,6 @@ public class Calculator {
             operationWanted = inputOperation.nextInt();
         }
 
-//        while (true) {
-//            System.out.println("------------------------------------------------------------------------------");
-//            System.out.println("Hi, please enter the digit corresponding to the operation you want to do:");
-//            System.out.println("    1- add");
-//            System.out.println("    2- substract");
-//            System.out.println("    3- Mutiply");
-//            System.out.println("    4- Devide");
-//            System.out.println("------------------------------------------------------------------------------");
-//            try {
-//                operationWanted = inputOperation.nextInt();
-//                break;
-//            } catch (InputMismatchException ignore) {
-//                System.out.println("Invalid input.Please enter a valid entry (1, 2, 3 or 4):");
-//                operationWanted = inputOperation.nextInt();
-//            } finally {
-//                if (inputOperation.hasNextInt()){
-//                    success = true;
-//                }
-//            }
-//        }
-
         Scanner inputNumbers = new Scanner(System.in);
         while (true) {
             System.out.println("Enter the 1st number");
@@ -85,7 +64,6 @@ public class Calculator {
         System.out.println("------------------------------------------------------------------------------");
         System.out.println("The result of your operation is : " + result);
         System.out.println("------------------------------------------------------------------------------");
-
 
         System.out.println("Do you want to do another operation? YES/NO");
         Scanner nextOperation = new Scanner(System.in);
@@ -157,6 +135,7 @@ public class Calculator {
             } else {
                 System.out.println("Wrong input. Please run the program again.");
             }
+
         } else if(answerNextOperation.equalsIgnoreCase("NO")||answerNextNextOperation.equalsIgnoreCase("NO")) {
             System.out.println("Thank you for having used this awesome Calculator");
         } else {
