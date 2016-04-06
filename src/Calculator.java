@@ -2,11 +2,10 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 //bugs:
-//- does not check the validity of operation input
 //- run the program again even while the user input is not equal to no
 
 public class Calculator {
-    public static void main (String []args) {
+    public static void main(String[] args) {
         int operationWanted;
         float number1;
         float number2;
@@ -149,16 +148,16 @@ public class Calculator {
 
                 System.out.println("Do you want to do another operation? YES/NO");
                 answerNextNextOperation = nextOperation.nextLine();
+                answerNextOperation = "";
 
-            } while (answerNextNextOperation.equalsIgnoreCase("YES") || answerNextOperation.equalsIgnoreCase("YES"));
+            } while (answerNextOperation.equalsIgnoreCase("YES") || answerNextNextOperation.equalsIgnoreCase("YES"));
 
             if (answerNextNextOperation.equalsIgnoreCase("NO")) {
                 System.out.println("Thank you for having used this awesome Calculator");
             } else {
                 System.out.println("Wrong input. Please run the program again.");
             }
-
-        } else if (answerNextOperation.equalsIgnoreCase("NO") ||answerNextNextOperation.equalsIgnoreCase("NO")) {
+        } else if(answerNextOperation.equalsIgnoreCase("NO")||answerNextNextOperation.equalsIgnoreCase("NO")) {
             System.out.println("Thank you for having used this awesome Calculator");
         } else {
             System.out.println("Wrong input. Please run the program again.");
