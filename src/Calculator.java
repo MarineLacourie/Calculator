@@ -3,51 +3,54 @@ import java.util.Scanner;
 
 public class Calculator {
     public static void main (String []args) {
-        int operationWanted = 0;
-        float number1 = 0;
-        float number2 = 0;
+        int operationWanted;
+        float number1;
+        float number2;
         float result = 0;
-
-        System.out.println("------------------------------------------------------------------------------");
-        System.out.println("Hi, please enter the digit corresponding to the operation you want to do:");
-        System.out.println("    1- Add");
-        System.out.println("    2- Substract");
-        System.out.println("    3- Mutiply");
-        System.out.println("    4- Devide");
-        System.out.println("------------------------------------------------------------------------------");
-
+        boolean success;
 
         Scanner inputOperation = new Scanner(System.in);
-        operationWanted = inputOperation.nextInt();
-
-        while (operationWanted != 1 && operationWanted != 2 && operationWanted != 3 && operationWanted != 4) {
-            System.out.println("Wrong input. Please enter a valid entry (1, 2, 3 or 4):");
-            operationWanted = inputOperation.nextInt();
+        while (true) {
+            System.out.println("------------------------------------------------------------------------------");
+            System.out.println("Hi, please enter the digit corresponding to the operation you want to do:");
+            System.out.println("    1- Add");
+            System.out.println("    2- Substract");
+            System.out.println("    3- Mutiply");
+            System.out.println("    4- Devide");
+            System.out.println("------------------------------------------------------------------------------");
+            try {
+                operationWanted = inputOperation.nextInt();
+                break;
+            } catch (InputMismatchException ignore) {
+                System.out.println("Invalid input.Please enter a valid entry (1, 2, 3 or 4):");
+                operationWanted = inputOperation.nextInt();
+            } finally {
+                if (inputOperation.hasNextInt()){
+                    success = true;
+                }
+            }
         }
 
         Scanner inputNumbers = new Scanner(System.in);
-
-        try {
+        while (true) {
             System.out.println("Enter the 1st number");
-            number1 = inputNumbers.nextInt();
-        } catch (InputMismatchException a) {
             try {
-                System.out.println("This is not a valid input. Enter the 1st number again: ");
-                Scanner inputNumbersBis = new Scanner(System.in);
-                number1 = inputNumbersBis.nextInt();
+                number1 = Float.parseFloat(inputNumbers.next());
+                break;
+            } catch (NumberFormatException ignore) {
+                System.out.println("Invalid input.Please enter a number:");
             }
-
-            catch(InputMismatchException b) {
-                while (a != null) {
-                    System.out.println("This is not a valid input. Please run the program again ");
-                    break;
-                    }
-                }
         }
 
-
-        System.out.println("Enter the 2nd number");
-        number2 = inputNumbers.nextInt();
+        while (true) {
+            System.out.println("Enter the 2nd number");
+            try {
+                number2 = Float.parseFloat(inputNumbers.next());
+                break;
+            } catch (NumberFormatException ignore) {
+                System.out.println("Invalid input. Please enter a number:");
+            }
+        }
 
         if (operationWanted == 1) {
             result = add(number1, number2);
@@ -75,26 +78,41 @@ public class Calculator {
 
         if (answerNextOperation.equalsIgnoreCase("YES")) {
             do {
-                System.out.println("------------------------------------------------------------------------------");
-                System.out.println("Hi, please enter the digit corresponding to the operation you want to do:");
-                System.out.println("    1- Add");
-                System.out.println("    2- Substract");
-                System.out.println("    3- Mutiply");
-                System.out.println("    4- Devide");
-                System.out.println("------------------------------------------------------------------------------");
-
-                operationWanted = inputOperation.nextInt();
-
-                while (operationWanted != 1 && operationWanted != 2 && operationWanted != 3 && operationWanted != 4) {
-                    System.out.println("Wrong input. Please enter a valid entry (1, 2, 3 or 4):");
-                    operationWanted = inputOperation.nextInt();
+                while (true) {
+                    System.out.println("------------------------------------------------------------------------------");
+                    System.out.println("Hi, please enter the digit corresponding to the operation you want to do:");
+                    System.out.println("    1- Add");
+                    System.out.println("    2- Substract");
+                    System.out.println("    3- Mutiply");
+                    System.out.println("    4- Devide");
+                    System.out.println("------------------------------------------------------------------------------");
+                    try {
+                        operationWanted = inputOperation.nextInt();
+                        break;
+                    } catch (NumberFormatException ignore) {
+                        System.out.println("Invalid input.Please enter a valid entry (1, 2, 3 or 4):");
+                    }
                 }
 
-                System.out.println("Enter the 1st number");
-                number1 = inputNumbers.nextInt();
+                while (true) {
+                    System.out.println("Enter the 1st number");
+                    try {
+                        number1 = Float.parseFloat(inputNumbers.next());
+                        break;
+                    } catch (NumberFormatException ignore) {
+                        System.out.println("Invalid input.Please enter a number:");
+                    }
+                }
 
-                System.out.println("Enter the 2nd number");
-                number2 = inputNumbers.nextInt();
+                while (true) {
+                    System.out.println("Enter the 2nd number");
+                    try {
+                        number2 = Float.parseFloat(inputNumbers.next());
+                        break;
+                    } catch (NumberFormatException ignore) {
+                        System.out.println("Invalid input. Please enter a number:");
+                    }
+                }
 
                 if (operationWanted == 1) {
                     result = add(number1, number2);
@@ -113,8 +131,10 @@ public class Calculator {
                 System.out.println("The result of your operation is : " + result);
                 System.out.println("------------------------------------------------------------------------------");
 
+
+                //Ask operation again
                 System.out.println("Do you want to do another operation? YES/NO");
-                answerNextNextOperation = nextOperation.nextLine();
+                answerNextOperation = nextOperation.nextLine();
             } while ((answerNextNextOperation.equalsIgnoreCase("YES")));
             if (answerNextNextOperation.equalsIgnoreCase("NO")) {
                 System.out.println("Thank you for having used this awesome Calculator");
