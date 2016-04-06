@@ -1,6 +1,10 @@
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+//bugs:
+//- does not check the validity of operation input
+//- run the program again even while the user input is not equal to no
+
 public class Calculator {
     public static void main (String []args) {
         int operationWanted;
@@ -18,6 +22,11 @@ public class Calculator {
         System.out.println("------------------------------------------------------------------------------");
 
         operationWanted = inputOperation.nextInt();
+
+        while (operationWanted != 1 && operationWanted != 2 && operationWanted != 3 && operationWanted != 4) {
+            System.out.println("Invalid input.Please enter a valid entry (1, 2, 3 or 4):");
+            operationWanted = inputOperation.nextInt();
+        }
 
 //        while (true) {
 //            System.out.println("------------------------------------------------------------------------------");
@@ -85,7 +94,7 @@ public class Calculator {
         String answerNextNextOperation = "";
 
         if (answerNextOperation.equalsIgnoreCase("YES")) {
-            while (answerNextNextOperation.equalsIgnoreCase("YES") || answerNextOperation.equalsIgnoreCase("YES")) {
+            do {
                 System.out.println("------------------------------------------------------------------------------");
                 System.out.println("Hi, please enter the digit corresponding to the operation you want to do:");
                 System.out.println("    1- Add");
@@ -95,6 +104,11 @@ public class Calculator {
                 System.out.println("------------------------------------------------------------------------------");
 
                 operationWanted = inputOperation.nextInt();
+
+                while (operationWanted != 1 && operationWanted != 2 && operationWanted != 3 && operationWanted != 4) {
+                    System.out.println("Invalid input.Please enter a valid entry (1, 2, 3 or 4):");
+                    operationWanted = inputOperation.nextInt();
+                }
 
                 while (true) {
                     System.out.println("Enter the 1st number");
@@ -135,8 +149,9 @@ public class Calculator {
 
                 System.out.println("Do you want to do another operation? YES/NO");
                 answerNextNextOperation = nextOperation.nextLine();
-                System.out.println(answerNextNextOperation);
-            }
+
+            } while (answerNextNextOperation.equalsIgnoreCase("YES") || answerNextOperation.equalsIgnoreCase("YES"));
+
             if (answerNextNextOperation.equalsIgnoreCase("NO")) {
                 System.out.println("Thank you for having used this awesome Calculator");
             } else {
